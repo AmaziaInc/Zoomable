@@ -9,7 +9,7 @@ kotlin {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 21
@@ -77,6 +77,11 @@ afterEvaluate {
                 groupId = 'moe.tlaster'
                 artifactId = 'Zoomable'
                 version = '0.6.2'
+            }
+        }
+        repositories {
+            maven {
+                url repositoryDir
             }
         }
     }

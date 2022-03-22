@@ -1,0 +1,83 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "moe.tlaster",
+    "module": "Zoomable",
+    "version": "0.6.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "Zoomable-0.6.2.aar",
+          "url": "Zoomable-0.6.2.aar",
+          "size": 69013,
+          "sha512": "daae152adda6f53597a0a29dd45136773fad02d7440ad9be652e5258cf9fd7f851ce612553e78332b7ba0c66ffb65602eab95a8502916535fdcfb26a19c82fa0",
+          "sha256": "c0315c92d04a0414f1e6e4329a243256019d579e657c80421b404bda34702d3b",
+          "sha1": "cd8ccdca97cd861a0587f58a9f07ab1730de42d3",
+          "md5": "c9ec3aac2b7e2ab28561c3a3b0296f7a"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.10"
+          }
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.1.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "Zoomable-0.6.2.aar",
+          "url": "Zoomable-0.6.2.aar",
+          "size": 69013,
+          "sha512": "daae152adda6f53597a0a29dd45136773fad02d7440ad9be652e5258cf9fd7f851ce612553e78332b7ba0c66ffb65602eab95a8502916535fdcfb26a19c82fa0",
+          "sha256": "c0315c92d04a0414f1e6e4329a243256019d579e657c80421b404bda34702d3b",
+          "sha1": "cd8ccdca97cd861a0587f58a9f07ab1730de42d3",
+          "md5": "c9ec3aac2b7e2ab28561c3a3b0296f7a"
+        }
+      ]
+    }
+  ]
+}
