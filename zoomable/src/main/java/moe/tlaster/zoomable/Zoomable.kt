@@ -2,7 +2,13 @@
 
 package moe.tlaster.zoomable
 
-import androidx.compose.foundation.gestures.*
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.awaitTouchSlopOrCancellation
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.gestures.drag
+import androidx.compose.foundation.gestures.forEachGesture
+import androidx.compose.foundation.gestures.rememberTransformableState
+import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -12,10 +18,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.input.pointer.*
+import androidx.compose.ui.input.pointer.PointerInputChange
+import androidx.compose.ui.input.pointer.PointerInputScope
+import androidx.compose.ui.input.pointer.consumePositionChange
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.positionChange
+import androidx.compose.ui.input.pointer.positionChangeConsumed
 import androidx.compose.ui.layout.layout
 import kotlinx.coroutines.launch
 
@@ -24,6 +36,7 @@ import kotlinx.coroutines.launch
  *
  * @param state the state object to be used to observe the [Zoomable] state.
  * @param modifier the modifier to apply to this layout.
+ * @param onTap a function called on tap gesture.
  * @param doubleTapScale a function called on double tap gesture, will scale to returned value.
  * @param content a block which describes the content.
  */
@@ -32,10 +45,13 @@ fun Zoomable(
     state: ZoomableState,
     modifier: Modifier = Modifier,
     enable: Boolean = true,
+    onTap: (PointerInputScope.(Offset) -> Unit)? = null,
     doubleTapScale: (() -> Float)? = null,
     content: @Composable BoxScope.() -> Unit,
 ) {
     val scope = rememberCoroutineScope()
+    val currentOnTap by rememberUpdatedState(onTap)
+    val currentDoubleTapScale by rememberUpdatedState(doubleTapScale)
     BoxWithConstraints(
         modifier = modifier,
     ) {
@@ -59,12 +75,19 @@ fun Zoomable(
                 }
             }
         }
-        val doubleTapModifier = if (doubleTapScale != null && enable) {
+        val doubleTapModifier = if ((currentOnTap != null || currentDoubleTapScale != null) && enable) {
             Modifier.pointerInput(Unit) {
                 detectTapGestures(
-                    onDoubleTap = {
-                        scope.launch {
-                            state.animateScaleTo(doubleTapScale())
+                    onTap = currentOnTap?.let { onTap ->
+                        { offset ->
+                            onTap(offset)
+                        }
+                    },
+                    onDoubleTap = currentDoubleTapScale?.let { doubleTapScale ->
+                        {
+                            scope.launch {
+                                state.animateScaleTo(doubleTapScale())
+                            }
                         }
                     }
                 )
