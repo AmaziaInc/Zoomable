@@ -79,5 +79,10 @@ afterEvaluate {
                 version = '0.6.2'
             }
         }
+        repositories {
+            maven {
+                url repositoryDir
+            }
+        }
     }
 }
