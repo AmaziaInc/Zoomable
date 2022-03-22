@@ -38,6 +38,7 @@ import kotlinx.coroutines.launch
  * @param modifier the modifier to apply to this layout.
  * @param onTap a function called on tap gesture.
  * @param doubleTapScale a function called on double tap gesture, will scale to returned value.
+ * @param shouldConsumePositionChange a function called on drag, returns a value whether to consume position change or not
  * @param content a block which describes the content.
  */
 @Composable
@@ -47,11 +48,14 @@ fun Zoomable(
     enable: Boolean = true,
     onTap: (PointerInputScope.(Offset) -> Unit)? = null,
     doubleTapScale: (() -> Float)? = null,
+    shouldConsumePositionChange: PointerInputScope.(change: PointerInputChange, dragAmount: Offset) -> Boolean = { _, _ -> true },
     content: @Composable BoxScope.() -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val currentOnTap by rememberUpdatedState(onTap)
     val currentDoubleTapScale by rememberUpdatedState(doubleTapScale)
+    val currentShouldConsumePositionChange by rememberUpdatedState(shouldConsumePositionChange)
+
     BoxWithConstraints(
         modifier = modifier,
     ) {
@@ -101,13 +105,15 @@ fun Zoomable(
                     detectDrag(
                         onDrag = { change, dragAmount ->
                             if (state.zooming && enable) {
-                                change.consumePositionChange()
-                                scope.launch {
-                                    state.drag(dragAmount)
-                                    state.addPosition(
-                                        change.uptimeMillis,
-                                        change.position
-                                    )
+                                if (currentShouldConsumePositionChange(change, dragAmount)) {
+                                    change.consumePositionChange()
+                                    scope.launch {
+                                        state.drag(dragAmount)
+                                        state.addPosition(
+                                            change.uptimeMillis,
+                                            change.position
+                                        )
+                                    }
                                 }
                             }
                         },
