@@ -28,12 +28,18 @@ import kotlinx.coroutines.launch
 fun rememberZoomableState(
     @FloatRange(from = 0.0) minScale: Float = 1f,
     @FloatRange(from = 0.0) maxScale: Float = Float.MAX_VALUE,
+    @FloatRange(from = 0.0) initialTranslateX: Float = 0f,
+    @FloatRange(from = 0.0) initialTranslateY: Float = 0f,
+    @FloatRange(from = 0.0) initialScale: Float = minScale,
 ): ZoomableState = rememberSaveable(
     saver = ZoomableState.Saver
 ) {
     ZoomableState(
         minScale = minScale,
         maxScale = maxScale,
+        initialTranslateX = initialTranslateX,
+        initialTranslateY = initialTranslateY,
+        initialScale = initialScale
     )
 }
 
