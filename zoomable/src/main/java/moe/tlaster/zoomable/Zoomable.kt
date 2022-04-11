@@ -104,7 +104,7 @@ fun Zoomable(
                 .pointerInput(Unit) {
                     detectDrag(
                         onDrag = { change, dragAmount ->
-                            if (state.zooming && enable) {
+                            if (state.scale > 1f && enable) {
                                 if (currentShouldConsumePositionChange(change, dragAmount)) {
                                     change.consumePositionChange()
                                     scope.launch {
@@ -123,7 +123,7 @@ fun Zoomable(
                             }
                         },
                         onDragEnd = {
-                            if (state.zooming && enable) {
+                            if (state.scale > 1f && enable) {
                                 scope.launch {
                                     state.dragEnd()
                                 }
