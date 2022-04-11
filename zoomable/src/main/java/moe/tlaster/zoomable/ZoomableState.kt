@@ -92,9 +92,6 @@ class ZoomableState(
     val translateX: Float
         get() = _translateX.value
 
-    internal val zooming: Boolean
-        get() = scale > minScale
-
     /**
      * Instantly sets scale of [Zoomable] to given [scale]
      */
