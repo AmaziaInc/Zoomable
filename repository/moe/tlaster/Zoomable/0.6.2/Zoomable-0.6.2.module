@@ -35,11 +35,11 @@
         {
           "name": "Zoomable-0.6.2.aar",
           "url": "Zoomable-0.6.2.aar",
-          "size": 69207,
-          "sha512": "ad754177016c512b67f89ba155e74fd3cdf5905838cff5195004dbda89d4e574b364cf7bc1df0e7cee23dd2bf4a1eba10fe67eb99ffa40652d37640807250ae0",
-          "sha256": "83a196dd06a83d1f299e345f74121d529e0e957a05a4224f7e6d1df8509ea92b",
-          "sha1": "180b991d31bdf50508c031206116e61127adf401",
-          "md5": "832c871a85b762cec2a21886ab96084c"
+          "size": 69013,
+          "sha512": "daae152adda6f53597a0a29dd45136773fad02d7440ad9be652e5258cf9fd7f851ce612553e78332b7ba0c66ffb65602eab95a8502916535fdcfb26a19c82fa0",
+          "sha256": "c0315c92d04a0414f1e6e4329a243256019d579e657c80421b404bda34702d3b",
+          "sha1": "cd8ccdca97cd861a0587f58a9f07ab1730de42d3",
+          "md5": "c9ec3aac2b7e2ab28561c3a3b0296f7a"
         }
       ]
     },
@@ -71,11 +71,11 @@
         {
           "name": "Zoomable-0.6.2.aar",
           "url": "Zoomable-0.6.2.aar",
-          "size": 69207,
-          "sha512": "ad754177016c512b67f89ba155e74fd3cdf5905838cff5195004dbda89d4e574b364cf7bc1df0e7cee23dd2bf4a1eba10fe67eb99ffa40652d37640807250ae0",
-          "sha256": "83a196dd06a83d1f299e345f74121d529e0e957a05a4224f7e6d1df8509ea92b",
-          "sha1": "180b991d31bdf50508c031206116e61127adf401",
-          "md5": "832c871a85b762cec2a21886ab96084c"
+          "size": 69013,
+          "sha512": "daae152adda6f53597a0a29dd45136773fad02d7440ad9be652e5258cf9fd7f851ce612553e78332b7ba0c66ffb65602eab95a8502916535fdcfb26a19c82fa0",
+          "sha256": "c0315c92d04a0414f1e6e4329a243256019d579e657c80421b404bda34702d3b",
+          "sha1": "cd8ccdca97cd861a0587f58a9f07ab1730de42d3",
+          "md5": "c9ec3aac2b7e2ab28561c3a3b0296f7a"
         }
       ]
     }
